@@ -1,0 +1,70 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap");
+* {
+  padding: 0px;
+  margin: 0px;
+  font-family: Roboto;
+}
+.header {
+  width: 100%;
+}
+#wrapper {
+  width: 90%;
+  margin-right: auto;
+  margin-left: auto;
+}
+.input_styler {
+  padding: 10px;
+  font-size: 13.5px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  width: 100%;
+}
+.input_styler:focus {
+  border: 2px solid #3299ff;
+}
+.submit_styler {
+  padding: 10px;
+  font-size: 13.5px;
+  border-radius: 8px;
+  border: 1px solid #36bf92;
+  border-radius: 6px;
+  width: 100%;
+  background: #36bf92;
+  color: #fff;
+  font-weight: 500;
+  margin-left: auto;
+  margin-right: auto;
+}
+.submit_styler2 {
+  padding: 10px;
+  font-size: 13.5px;
+  border-radius: 8px;
+  border: 1px solid #ff7f50;
+  border-radius: 6px;
+  width: 100%;
+  background: #ff7f50;
+  color: #fff;
+  font-weight: 500;
+  margin-left: auto;
+  margin-right: auto;
+}
+.button_styler {
+  border: 1px solid #eee;
+  background: #f1f1f1;
+  color: #444;
+  font-size: 14px;
+  text-decoration: none;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  float: right;
+}
+.divide2 {
+  width: 25%;
+  float: left;
+}
+.divide3 {
+  width: 75%;
+  float: left;
+}
