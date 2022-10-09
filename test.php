@@ -1,53 +1,90 @@
-<?php include('./includes/connection.php'); ?>
-<form method="post" action="<?php echo $_SERVER['PHP_SELF'] ?>">
-    <div id="content" class="form-row"></div>
-    <input name="test" type="submit">
-</form>
-<button class="btn btn-light col-md-12" onclick="add_fields()">Add More</button>
-<?php
-$test = @$_POST['test'];
-$additional_title = (@$_POST['additional_title']);
-$additional_contetn = (@$_POST['additional_content']);
-foreach ($additional_title as $row) {
-    @$additional_title .= $row . ",";
-}
-foreach ($additional_contetn as $row) {
-    @$additional_contetn .= $row . ",";
-}
-$additional_title = substr($additional_title, 5, -1);
-$additional_contetn = substr($additional_contetn, 5, -1);
-if ($test) {
-    $query = "UPDATE `resume_data` SET `additional_title`='$additional_title' , `additional_content`='$additional_contetn' WHERE `resume_id` = '1'";
-    $result = mysqli_query($conn, $query);
-    if ($result) {
-        echo "UPDATED!";
-    }
-} ?>
-<script>
-    function add_fields() {
-        var d = document.getElementById("content");
+<!DOCTYPE html>
+<html lang="en">
 
-        d.innerHTML += "<div class='col-md-6 mb-3'><label for='validationCustom05'>Additional Information Title</label><input type='text' class='form-control' id='validationCustomUsername' name='additional_title[]' placeholder='Additional Information Title' aria-describedby='inputGroupPrepend' required></div><div class='col-md-6 mb-3'><label for='validationCustom05'>Additional Information Content</label><textarea type='text' class='form-control' id='validationCustomUsername' name='additional_content[]' placeholder='Additional Information Content' aria-describedby='inputGroupPrepend' required></textarea></div>";
-    }
-</script>
+<head>
+    <meta charset="UTF-8">
+    <title>IDE</title>
+</head>
 
+<body>
 
-<?php
-$query = "SELECT * FROM resume_data WHERE resume_id = '1'";
-$result = mysqli_query($conn, $query);
-while ($rows = mysqli_fetch_assoc($result)) {
-    $additional_title = ($rows['additional_title']);
-    $additional_title =  (explode(',', $additional_title));
-    foreach ($additional_title as $additional_title) {
-        echo "<h1>" . $additional_title . "</h1><br>";
-    }
-    $additional_content = ($rows['additional_content']);
-    $additional_content =  (explode(',', $additional_content));
-    foreach ($additional_content as $additional_content) {
-        echo "<h1>" . $additional_content . "</h1><br>";
-    }
-}
+    <div class="header"> Codeboard Online IDE </div>
+    <div class="control-panel">
+        Select Language:
+        &nbsp; &nbsp;
+        <select id="languages" class="languages" onchange="changeLanguage()">
+            <option value="c"> C </option>
+            <option value="cpp"> C++ </option>
+            <option value="php"> PHP </option>
+            <option value="python"> Python </option>
+            <option value="node"> Node JS </option>
+        </select>
+    </div>
+    <div class="editor" id="editor"></div>
 
+    <div class="button-container">
+        <button class="btn" onclick="executeCode()"> Run </button>
+    </div>
 
+    <div class="output"></div>
 
-?>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="./lib/ace.js"></script>
+    <script src="./lib/theme-monokai.js"></script>
+    <script src="./lib/ide.js"></script>
+
+    <style>
+        * {
+            margin: 0;
+        }
+
+        .header {
+            background: #57a958;
+            text-align: left;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            padding: 4px;
+            font-family: sans-serif;
+        }
+
+        .control-panel {
+            background: lightgray;
+            text-align: right;
+            padding: 4px;
+            font-family: sans-serif;
+        }
+
+        .languages {
+            background: white;
+            border: 1px solid gray;
+        }
+
+        #editor {
+            height: 400px;
+        }
+
+        .button-container {
+            text-align: right;
+            padding: 4px;
+        }
+
+        .btn {
+            background: #57a958;
+            color: white;
+            padding: 8px;
+            border: 0;
+        }
+
+        .output {
+            padding: 4px;
+            border: 2px solid gray;
+            min-height: 100px;
+            width: 99%;
+            resize: none;
+
+        }
+    </style>
+</body>
+
+</html>

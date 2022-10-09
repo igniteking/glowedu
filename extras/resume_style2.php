@@ -15,13 +15,18 @@ while ($rows = mysqli_fetch_assoc($result)) {
     $education_title2 = $rows['education_title2'];
     $education_year2 = $rows['education_year2'];
     $education_from2 = $rows['education_from2'];
+    $award = $rows['award'];
+    $award_for = $rows['award_for'];
+    $award_date = $rows['award_date'];
+    $award2 = $rows['award2'];
+    $award_date2 = $rows['award_date2'];
+    $award_for2 = $rows['award_for2'];
     $mobile = $rows['mobile'];
     $address = $rows['address'];
     $work_experience = $rows['work_experience'];
     $address = $rows['address'];
     $profile_pic = $rows['profile_picture'];
     $additional_title = $rows['additional_title'];
-    $additional_content = $rows['additional_content'];
 }
 ?>
 
@@ -49,11 +54,11 @@ while ($rows = mysqli_fetch_assoc($result)) {
             <h1 style="color: white; letter-spacing: 0.05em; font-size: 0.875rem;
             line-height: 1.25rem; margin-top: 9px; font-family: sans-serif;"><?php echo $education_year . " | " . " | " . $education_title; ?></h1>
             <h1 style="color: white; font-weight: 600;  font-size: small; margin-top: -7px;
-            margin-bottom: 19px; font-family: sans-serif;"><?php echo $education_title ?></h1>
+            margin-bottom: 19px; font-family: sans-serif;"><?php echo $education_from ?></h1>
 
             <h1 style="color: white; letter-spacing: 0.05em; font-size: 0.875rem;
             line-height: 1.25rem; margin-top: 9px; font-family: sans-serif;"><?php echo $education_year2 . " | " . " | " . $education_title2; ?></h1>
-            <h1 style="color: white; font-weight: 600; font-size: small; margin-top: -7px; font-family: sans-serif;"><?php echo $education_title2 ?></h1>
+            <h1 style="color: white; font-weight: 600; font-size: small; margin-top: -7px; font-family: sans-serif;"><?php echo $education_from2 ?></h1>
 
             <h1 style="color: white; font-size: medium; text-transform: uppercase; letter-spacing: 0.1em; font: bold; margin-top: 25px; font-family: sans-serif;">
                 Contact</h1>
@@ -146,56 +151,41 @@ while ($rows = mysqli_fetch_assoc($result)) {
                     Award</h1>
                 <hr style="background-color: black; height: 1px; margin-top: 18px;">
 
-                <p style=" font-family: sans-serif;"><?php echo $education_year . " | " . " | " . $education_title; ?>
+                <p style=" font-family: sans-serif;"><?php echo $award_date . " | " . " | " . $award_for; ?>
                     <b>
-                        <p style="font-weight: 600;"><?php echo $education_title ?></p>
+                        <p style="font-weight: 600;"><?php echo $award ?></p>
                     </b><br>
                 </p>
-                <p style="margin-top: 3px; font-family: sans-serif;"><?php echo $education_year . " | " . " | " . $education_title; ?>
+                <p style="margin-top: 3px; font-family: sans-serif;"><?php echo $award_date2 . " | " . " | " . $award_for2; ?>
                     <b>
-                        <p style="font-weight: 600;"><?php echo $education_title ?></p>
+                        <p style="font-weight: 600;"><?php echo $award2 ?></p>
                     </b><br>
-                </p>
-
-                <p style="margin-top: 3px; font-family: sans-serif;"><?php echo $education_year . " | " . " | " . $education_title; ?>
-                    <b>
-                        <p style="font-weight: 600;"><?php echo $education_title ?></p>
-                    </b>
-                </p>
-
-                <p style="margin-top: 3px; font-family: sans-serif; "><?php echo $education_year . " | " . " | " . $education_title; ?>
-                    <b>
-                        <p style="font-weight: 600;"><?php echo $education_title ?></p>
-                    </b>
                 </p>
             </div>
-            <div class="skills">
+            <?php if ($additional_title) { ?>
+                <div class="skills">
 
-                <h1 style="font-weight: bold; font-size: medium; color: #1e3a8a; font-family: sans-serif; text-transform: uppercase;">
-                    Additional Information</h1>
-                <hr style="background-color: black; height: 1px; margin-top: 18px;">
-                <p style=' font-family: sans-serif;'>
+                    <h1 style="font-weight: bold; font-size: medium; color: #1e3a8a; font-family: sans-serif; text-transform: uppercase;">
+                        Additional Information</h1>
+                    <hr style="background-color: black; height: 1px; margin-top: 18px;">
                     <?php
-                    $additional_content = (explode(',', $additional_content));
-                    foreach ($additional_content as $additional_content) {
-                        echo ($additional_content) . "<br>";
-                    } ?>
+                    $obj = json_decode($additional_title);
 
-                    <b>
-                        <p style="font-weight: 600;"><?php $additional_title = (explode(',', $additional_title));
-                                                        foreach ($additional_title as $additional_title) {
-                                                            echo $additional_title . "<bR>";
-                                                        } ?></p>
-                    </b><br>
-                </p>
-            </div>
+                    foreach ($obj as $key => $value) {
+                        echo "<p style=' font-family: sans-serif;'>" . $key . "<b>" . "<p style='font-weight: 600;'>" . $value . "</p>
+                        </b>
+                        </p>";
+                    } ?><br>
+                </div>
+            <?php }
+            ?>
         </div>
 
     </div>
 </body>
 
-<!-- <script>
+<script>
     window.print();
-</script> -->
+</script>
 
 </html>

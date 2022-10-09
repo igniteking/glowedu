@@ -1,4 +1,5 @@
-<?php include("./includes/connection.php"); ?>
+<?php include("./includes/connection.php");
+include("./includes/functions.php"); ?>
 <!DOCTYPE html>
 <html>
 
@@ -46,9 +47,11 @@
                   if ($user_type == "teacher") {
                     mysqli_query($conn, "INSERT INTO `teacher_data`(`teacher_id`, `teacher_name`, `teacher_email`, `code`, `created_at`)
                                            VALUES (NULL, '$username','$email','$code','$date')");
+                    SendMail($email, 'Hi!Welcome to GlowEdu... <br> <br> This is your student registration link!<br> <br> https://learn.glowedu.co.in/glowedu/new_registration.php?user_type=teacher&code=' . $code);
                   } elseif ($user_type == "university") {
-                    mysqli_query($conn, "INSERT INTO `university_data`(`university_id`, `university_name`, `university_email`, `created_at`)
-                                           VALUES (NULL, '$username','$email','$date')");
+                    mysqli_query($conn, "INSERT INTO `university_data`(`university_id`, `university_name`, `university_email`, `code`, `created_at`)
+                                           VALUES (NULL, '$username','$email','$code','$date')");
+                    SendMail($email, 'Hi!Welcome to GlowEdu... <br> <br> This is your techer registration link!<br> <br> https://learn.glowedu.co.in/glowedu/new_registration.php?user_type=university&code=' . $code);
                   } elseif ($user_type == "recruiter") {
                     mysqli_query($conn, "INSERT INTO `recruiter_data`(`recruiter_id`, `recruiter_name`, `recruiter_email`, `created_at`)
                                            VALUES (NULL, '$username','$email','$date')");
@@ -169,7 +172,7 @@
 
                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                       <input type="submit" value="Sign Up!" name="submit" class="btn btn-primary btn-lg"></button>
-                      <a style="margin-left: 15px; margin-top: 5px;" href="./login.php">Sign Up!</a>
+                      <a style="margin-left: 15px; margin-top: 5px;" href="./login.php">Sign In!</a>
                     </div>
 
                   </form>

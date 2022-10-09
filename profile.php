@@ -123,27 +123,27 @@
                                             } ?>
                                             <div class="col-md-4 mb-3">
                                                 <label for="validationCustom01">User Name</label>
-                                                <input type="text" class="form-control" id="validationCustom01" value="<?php echo $student_name ?>" name="username" placeholder="Username" required />
+                                                <input type="text" class="form-control" id="validationCustom01" value="<?php echo $student_name ?>" name="username" placeholder="Username" />
                                             </div>
                                             <div class="col-md-4 mb-3">
                                                 <label for="validationCustom02">User E-mail</label>
-                                                <input type="email" class="form-control" id="validationCustom02" name="email" disabled="disabled" value="<?php echo $email ?>" placeholder="Your E-mail" required />
+                                                <input type="email" class="form-control" id="validationCustom02" name="email" disabled="disabled" value="<?php echo $email ?>" placeholder="Your E-mail" />
                                             </div>
                                             <div class="col-md-4 mb-3">
                                                 <label for="validationCustomUsername">User Bio</label>
                                                 <div class="input-group">
-                                                    <textarea type="text" class="form-control" id="validationCustomUsername" name="bio" placeholder="About Yourself" aria-describedby="inputGroupPrepend" required><?php echo ($bio); ?></textarea>
+                                                    <textarea type="text" class="form-control" id="validationCustomUsername" name="bio" placeholder="About Yourself" aria-describedby="inputGroupPrepend"><?php echo ($bio); ?></textarea>
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-row">
                                             <div class="col-md-4 mb-3">
                                                 <label for="validationCustom03">User Address</label>
-                                                <textarea type="text" class="form-control" id="validationCustom03" name="address" placeholder="Student Address" required><?php echo ($address); ?></textarea>
+                                                <textarea type="text" class="form-control" id="validationCustom03" name="address" placeholder="Student Address"><?php echo ($address); ?></textarea>
                                             </div>
                                             <div class="col-md-4 mb-3">
                                                 <label for="validationCustom04">User Mobile Number</label>
-                                                <input type="tel" class="form-control" id="validationCustom04" placeholder="Student Mobile Number" value="<?php echo $mobile ?>" name="mobile" required />
+                                                <input type="tel" class="form-control" id="validationCustom04" placeholder="Student Mobile Number" value="<?php echo $mobile ?>" name="mobile" />
                                             </div>
                                             <div class="position-relative form-group"><label for="exampleAddress" class="">User Picture</label><input name="profile_picture" id="exampleAddress" type="file" class="form-control"></div>
                                             <input class="btn btn-primary col-12" name="submit" type="submit" value="Submit form"></button>

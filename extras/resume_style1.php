@@ -15,13 +15,18 @@ while ($rows = mysqli_fetch_assoc($result)) {
     $education_title2 = $rows['education_title2'];
     $education_year2 = $rows['education_year2'];
     $education_from2 = $rows['education_from2'];
+    $award = $rows['award'];
+    $award_for = $rows['award_for'];
+    $award_date = $rows['award_date'];
+    $award2 = $rows['award2'];
+    $award_date2 = $rows['award_date2'];
+    $award_for2 = $rows['award_for2'];
     $mobile = $rows['mobile'];
     $address = $rows['address'];
     $work_experience = $rows['work_experience'];
     $address = $rows['address'];
     $profile_pic = $rows['profile_picture'];
     $additional_title = $rows['additional_title'];
-    $additional_content = $rows['additional_content'];
 }
 ?>
 <link rel="stylesheet" href="../main.css">
@@ -69,32 +74,29 @@ while ($rows = mysqli_fetch_assoc($result)) {
                     <h2>Award</h2>
                 </div>
             </div><br>
-            <h5><?php echo $education_year . " | " . " | " . $education_title; ?></h5>
+            <h5><?php echo $award_date . " | " . " | " . $award_for; ?></h5>
             <b>
-                <h5 style="font-weight: 600;"><?php echo $education_title ?></h5>
+                <h5 style="font-weight: 600;"><?php echo $award ?></h5>
             </b><br>
-            <h5><?php echo $education_year2 . " | " . " | " . $education_title2; ?></h5>
+            <h5><?php echo $award_date2 . " | " . " | " . $award_for2; ?></h5>
             <b>
-                <h5 style="font-weight: 600;"><?php echo $education_title2 ?></h5>
+                <h5 style="font-weight: 600;"><?php echo $award2 ?></h5>
             </b><br>
-            <h5><?php echo $work_experience; ?></h5><br>
-            <div class="col-12 bg-dark">
-                <div class="card-title text-white">
-                    <h2>Additional Info</h2>
-                </div>
-            </div><br>
-            <h5><?php $additional_title = (explode(',', $additional_title));
-                foreach ($additional_title as $additional_title) {
-                    echo $additional_title . "<bR>";
-                } ?></h5>
-            <b>
-                <h5 style="font-weight: 600;"><?php
-                    $additional_content = (explode(',', $additional_content));
-                    foreach ($additional_content as $additional_content) {
-                        echo ($additional_content) . "<br>";
-                    } ?></h5>
-            </b>
+            <?php if ($additional_title) { ?>
+                <div class="col-12 bg-dark">
+                    <div class="card-title text-white">
+                        <h2>Additional Info</h2>
+                    </div>
+                </div><br>
+                <?php
+                $obj = json_decode($additional_title);
+
+                foreach ($obj as $key => $value) {
+                    echo "<h5>" . $key . "</h5>" . "<b><h5 style='font-weight: 600;'>" . $value . "</h5></b>";
+                } ?>
         </div>
+    <?php }
+    ?>
     </div>
 </div>
 <script>

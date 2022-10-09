@@ -172,19 +172,13 @@ while ($rows = mysqli_fetch_assoc($result)) {
             <div class="recognition" style="height:auto ;">
                 <h2><span style="color:#4545ae ;">Additional Information</span></h2>
                 <table>
-                    <tr>
-                        <?php $additional_title = (explode(',', $additional_title));
-                        foreach ($additional_title as $additional_title) {
-                            echo "<td> $additional_title</td>";
-                        } ?>
-                    </tr>
-                    <tr>
-                        <?php
-                        $additional_content = (explode(',', $additional_content));
-                        foreach ($additional_content as $additional_content) {
-                            echo "<td> $additional_content</td>";
-                        } ?>
-                    </tr>
+                    <?php
+                    $obj = json_decode($additional_title);
+
+                    foreach ($obj as $key => $value) {
+                        echo "<tr><td>" . $key . "</td>" . "<td>" . $value . "</td></tr>";
+                    } ?>
+
                 </table>
 
 
@@ -240,3 +234,6 @@ while ($rows = mysqli_fetch_assoc($result)) {
 </style>
 
 </html>
+<script>
+    window.print();
+</script>

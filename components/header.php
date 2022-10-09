@@ -164,55 +164,75 @@ if (isset($_SESSION["email"])) {
               }
               ?>
 
-              <li class="app-sidebar__heading">Student Details</li>
-              <?php $curPageName = substr($_SERVER["SCRIPT_NAME"], strrpos($_SERVER["SCRIPT_NAME"], "/") + 1);
-              if ($curPageName == '.php') {
-                echo '<li>
+              <?php if ($user_type == 'teacher') { ?>
+                <li class="app-sidebar__heading">Assignment Management</li>
+                <?php $curPageName = substr($_SERVER["SCRIPT_NAME"], strrpos($_SERVER["SCRIPT_NAME"], "/") + 1);
+                if ($curPageName == '.php') {
+                  echo '<li>
                 <a href="#" class="mm-active">
                   <i class="metismenu-icon pe-7s-users"></i>
-                  Resume Management
+                  Assignment Management
                   <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                 </a>';
-              } else {
-                echo '<li>
+                } else {
+                  echo '<li>
                 <a href="#" >
                   <i class="metismenu-icon pe-7s-users"></i>
-                  Resume Management
+                  Assignment Management
                   <i class="metismenu-state-icon pe-7s-angle-down caret-left"></i>
                 </a>';
-              } ?>
-              <ul>
-                <li>
-                  <a href="student_form.php">
-                    <i class="metismenu-icon"></i>
-                    Student Form
-                  </a>
+                } ?>
+                <ul>
+                  <li>
+                    <a href="assignment.php">
+                      <i class="metismenu-icon"></i>
+                      Assignment
+                    </a>
+                  </li>
+                  <li>
+                    <a href="checked_assignment.php">
+                      <i class="metismenu-icon"> </i>Checked Assignment
+                    </a>
+                  </li>
+                </ul>
                 </li>
-                <li>
-                  <a href="student_list.php">
-                    <i class="metismenu-icon"> </i>Student List
-                  </a>
-                </li>
-              </ul>
-              </li>
-              <li class="app-sidebar__heading">Resume Management</li>
-              <?php $curPageName = substr($_SERVER["SCRIPT_NAME"], strrpos($_SERVER["SCRIPT_NAME"], "/") + 1);
-              if ($curPageName == 'resume_form.php') {
-                echo '<li>
+                <li class="app-sidebar__heading">Resume Management</li>
+                <?php $curPageName = substr($_SERVER["SCRIPT_NAME"], strrpos($_SERVER["SCRIPT_NAME"], "/") + 1);
+                if ($curPageName == 'resume_form.php') {
+                  echo '<li>
                 <a href="resume_form.php" class="mm-active">
                 <i class="metismenu-icon pe-7s-note2"></i>
                   Resume Management
                 </a>
               </li>';
-              } else {
-                echo '<li>
+                } else {
+                  echo '<li>
                 <a href="resume_form.php">
                 <i class="metismenu-icon pe-7s-note2"></i>
                   Resume Management
                 </a>
               </li>';
-              }
-              ?>
+                }
+              } else if ($user_type == 'student') { ?>
+                <li class="app-sidebar__heading">Assignment Management</li>
+                <?php $curPageName = substr($_SERVER["SCRIPT_NAME"], strrpos($_SERVER["SCRIPT_NAME"], "/") + 1);
+                if ($curPageName == './assignment.php') {
+                  echo '<li>
+                <a href="./assignment.php" class="mm-active">
+                <i class="metismenu-icon pe-7s-study"></i>
+                Assignments
+                </a>
+              </li>';
+                } else {
+                  echo '<li>
+                <a href="./assignment.php">
+                <i class="metismenu-icon pe-7s-study"></i>
+                Assignments
+                </a>
+              </li>';
+                }
+                ?>
+              <?php } ?>
               <li class="app-sidebar__heading">Group Discussions</li>
               <?php $curPageName = substr($_SERVER["SCRIPT_NAME"], strrpos($_SERVER["SCRIPT_NAME"], "/") + 1);
               if ($curPageName == 'group_dis.php') {
